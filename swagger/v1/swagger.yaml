@@ -1,0 +1,263 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/authors":
+    get:
+      summary: list authors
+      tags:
+      - Authors
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create author
+      tags:
+      - Authors
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/authors/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show author
+      tags:
+      - Authors
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+    patch:
+      summary: update author
+      tags:
+      - Authors
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '400':
+          description: bad request
+        '404':
+          description: not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+    delete:
+      summary: delete author
+      tags:
+      - Authors
+      responses:
+        '204':
+          description: successful
+        '404':
+          description: not found
+  "/competences":
+    get:
+      summary: list competences
+      tags:
+      - Competences
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create competence
+      tags:
+      - Competences
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                course_ids:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - name
+  "/competences/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show competence
+      tags:
+      - Competences
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+    patch:
+      summary: update competence
+      tags:
+      - Competences
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '400':
+          description: bad request
+        '404':
+          description: not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                course_ids:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - name
+    delete:
+      summary: delete competence
+      tags:
+      - Competences
+      responses:
+        '204':
+          description: successful
+        '404':
+          description: not found
+  "/courses":
+    get:
+      summary: list courses
+      tags:
+      - Courses
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create course
+      tags:
+      - Courses
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                author_id:
+                  type: integer
+                competence_ids:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - name
+  "/courses/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show course
+      tags:
+      - Courses
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+    patch:
+      summary: update course
+      tags:
+      - Courses
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: not found
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                author_id:
+                  type: integer
+                competence_ids:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - name
+    delete:
+      summary: delete course
+      tags:
+      - Courses
+      responses:
+        '204':
+          description: successful
+        '404':
+          description: not found
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000
